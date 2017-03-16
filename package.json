@@ -1,0 +1,15 @@
+{
+  "name": "wsl-rankings",
+  "version": "1.0.0",
+  "description": "Xperimental app for working with WSL CT ranks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamin Polge",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "lodash": "^4.17.4"
+  }
+}
