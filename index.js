@@ -14,15 +14,8 @@ client.on('error', (err) => {
   console.log(`Redis Client threw error: ${err}`);
 });
 
-app.get('/athletes', (req, res) => {
-  client.llenAsync('wsl.athletes')
-    .then((length) => {
-      return client.lrangeAsync('wsl.athletes', 0, 5);
-    })
-    .then((reply) => {
-      res.json(reply);
-    });
-});
+const athleteRoute = require('./routes/athletes')(client);
+app.use('/athletes', athleteRoute);
 
 app.listen(3000, () => {
   console.log('Server started. Listening on port 3000');
