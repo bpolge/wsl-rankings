@@ -4,7 +4,9 @@
   "description": "Xperimental app for working with WSL CT ranks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node_modules/supervisor/lib/cli-wrapper.js . -i node_modules,babel_components -e js,json -x babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build"
   },
   "author": "Benjamin Polge",
   "license": "ISC",
@@ -13,6 +15,15 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "redis": "^2.7.1"
-  }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-react": "^6.23.0",
+    "supervisor": "^0.12.0"
+  },
+  "repository": "https://github.com/bpolge/WSL-rankings"
 }

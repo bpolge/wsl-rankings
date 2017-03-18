@@ -1,6 +1,6 @@
-const express = require('express');
-const Promise = require('bluebird');
-const redis = require('redis');
+import express from 'express';
+import Promise from 'bluebird';
+import redis from 'redis';
 
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);

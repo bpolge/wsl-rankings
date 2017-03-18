@@ -1,0 +1,6 @@
+{
+  "presets": ["env", "react"],
+  "ignore": [
+    "bower_components/*",
+  ]
+}
