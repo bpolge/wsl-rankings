@@ -1,6 +1,7 @@
 import express from 'express';
-import Promise from 'bluebird';
-import redis from 'redis';
+
+const Promise = require('bluebird');
+const redis = require('redis');
 
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
@@ -8,12 +9,14 @@ Promise.promisifyAll(redis.Multi.prototype);
 const client = redis.createClient();
 const app = express();
 app.use(express.static('public'));
-app.use(express.static('bower_components'));
 
-client.on('error', (err) => {
+client.on('error', err => {
   console.log(`Redis Client threw error: ${err}`);
 });
 
+app.route('/', (req, res) => {
+  res.json('hello world');
+});
 const athleteRoute = require('./routes/athletes')(client);
 app.use('/athletes', athleteRoute);
 
