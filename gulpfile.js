@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const sass = require('gulp-sass');
+const util = require('gulp-util');
 
 const dirs = {
   build: './dist',
@@ -43,13 +44,18 @@ gulp.task('scripts', () => {
 
 gulp.task('babel', () => {
   gulp.src(files.js)
-  .pipe(babel())
+  .pipe(babel().on('error', util.log))
   .pipe(gulp.dest(config.output));
 });
 
 gulp.task('clean', () => {
-  gulp.src(config.buildDir, { read: false })
+  gulp.src(config.output, { read: false })
   .pipe(clean());
+});
+
+gulp.task('watch', () => {
+  gulp.watch(files.css, ['css']);
+  gulp.watch(files.js, ['babel']);
 });
 
 gulp.task('www', ['html', 'css', 'scripts', 'libs']);

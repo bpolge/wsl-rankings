@@ -1,6 +1,6 @@
 import express from 'express';
+import Promise from 'bluebird';
 
-const Promise = require('bluebird');
 const redis = require('redis');
 
 Promise.promisifyAll(redis.RedisClient.prototype);

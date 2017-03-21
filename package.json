@@ -4,9 +4,9 @@
   "description": "Xperimental app for working with WSL CT ranks",
   "main": "index.js",
   "scripts": {
-    "dev": "node_modules/supervisor/lib/cli-wrapper.js . -i node_modules,babel_components -e js,json -x babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d build"
+    "build": "gulp build",
+    "dev": "pushd ./dist && ../node_modules/supervisor/lib/cli-wrapper.js . -e js,json . && popd"
   },
   "author": "Benjamin Polge",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "gulp-bower": "0.0.13",
     "gulp-clean": "^0.3.2",
     "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8",
     "supervisor": "^0.12.0"
   },
   "repository": "https://github.com/bpolge/WSL-rankings"
