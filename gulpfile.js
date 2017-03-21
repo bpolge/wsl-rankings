@@ -52,4 +52,7 @@ gulp.task('clean', () => {
   .pipe(clean());
 });
 
-gulp.task('build', ['babel', 'html', 'libs']);
+gulp.task('www', ['html', 'css', 'scripts', 'libs']);
+gulp.task('server', ['babel']);
+gulp.task('build', ['www', 'server']);
+gulp.task('default', ['build']);
