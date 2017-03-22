@@ -58,7 +58,7 @@ gulp.task('watch', () => {
   gulp.watch(files.js, ['babel']);
 });
 
-gulp.task('www', ['html', 'css', 'scripts', 'libs']);
+gulp.task('www', ['html', 'css', 'libs']);
 gulp.task('server', ['babel']);
 gulp.task('build', ['www', 'server']);
 gulp.task('default', ['build']);

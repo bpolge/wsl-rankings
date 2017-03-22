@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp build",
-    "dev": "pushd ./dist && ../node_modules/supervisor/lib/cli-wrapper.js . -e js,json . && popd"
+    "dev": "pushd ./dist && ../node_modules/supervisor/lib/cli-wrapper.js . -e js,json . && popd",
+    "jsx": "./node_modules/.bin/webpack -d --watch"
   },
   "author": "Benjamin Polge",
   "license": "ISC",
@@ -19,8 +20,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "redis": "^2.7.1",
-    "redux": "^3.6.0",
-    "webpack": "^2.3.1"
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -33,7 +33,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
     "redux-devtools": "^3.3.2",
-    "supervisor": "^0.12.0"
+    "supervisor": "^0.12.0",
+    "webpack": "^2.3.1"
   },
   "repository": "https://github.com/bpolge/WSL-rankings"
 }
