@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const Athlete = props => {
-  const { name, rank, imgSrc } = props.athlete;
+  const { name, rank, imgSrc, points } = props.athlete;
   const url = `/athletes/${name}`;
   return (
     <li>
@@ -10,22 +10,26 @@ const Athlete = props => {
           <img className="athlete-img" src={imgSrc} alt={name} /></a>
         <span className="text-wrap">
           <a href={url}>{name}</a>
-          <span>{rank}</span>
+          <span>{rank}</span><br />
+          <span>{points}</span>
         </span>
+        <button name="add-points" onClick={props.onClick} />
       </div>
     </li>);
 };
 
 Athlete.propTypes = {
-  athlete: React.PropTypes.object
+  athlete: PropTypes.object,
+  onClick: PropTypes.func.isRequired,
 };
 
-const AthleteList = ({ athletes }) => (
+const AthleteList = ({ athletes, onAthleteClick }) => (
   <ul className="rankings">
     {athletes.map((athlete, idx) =>
       <Athlete
         key={idx}
         athlete={athlete}
+        onClick={() => onAthleteClick(idx)}
       />
     )}
   </ul>
