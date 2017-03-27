@@ -20,4 +20,15 @@ Athlete.propTypes = {
   athlete: React.PropTypes.object
 };
 
-module.exports = Athlete;
+const AthleteList = ({ athletes }) => (
+  <ul className="rankings">
+    {athletes.map((athlete, idx) =>
+      <Athlete
+        key={idx}
+        athlete={athlete}
+      />
+    )}
+  </ul>
+);
+
+export { Athlete, AthleteList };

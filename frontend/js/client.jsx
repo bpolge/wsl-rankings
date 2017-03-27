@@ -1,19 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './reducers';
+import { addAthlete } from './actions'; 
+import AthleteList from './container';
 
-import AthleteItem from './athlete.jsx';
-
+const store = createStore(reducer);
 $(() => {
-
-  // Need to add handlebars here at some point
-  function append(elems) {
-    ReactDOM.render(
-      <ul className="rankings">
-        { elems.map((elem, idx) => React.createElement(AthleteItem, { key: idx, athlete: elem }))}
-      </ul>,
-      global.document.getElementById('athlete-list'));
-  }
-
-  $.get('/athletes', append);
+  $.get('/athletes', items => items.map(item => {
+    store.dispatch(addAthlete(item));
+  }));
 });
 
+render(
+  <Provider store={store}>
+    <AthleteList />
+  </Provider>,
+  global.document.getElementById('athlete-list')
+);
