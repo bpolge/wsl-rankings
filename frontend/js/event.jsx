@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addPoints } from './actions';
 
-const Event = props => (
+let Event = ({ dispatch }) => (
   <div className="wsl-event col-md-9">
-    <button id="add-points" onClick={alert} />
+    <button
+      id="add-points"
+      onClick={e => {
+        e.preventDefault();
+        dispatch(addPoints(1));
+      }} />
   </div>
 );
 
-export default Event;
+export default connect()(Event);
