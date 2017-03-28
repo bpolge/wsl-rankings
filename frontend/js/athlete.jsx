@@ -13,26 +13,25 @@ const Athlete = props => {
           <span>{rank}</span><br />
           <span>{points}</span>
         </span>
-        <button name="add-points" onClick={props.onClick} />
       </div>
     </li>);
 };
 
 Athlete.propTypes = {
   athlete: PropTypes.object,
-  onClick: PropTypes.func.isRequired,
 };
 
-const AthleteList = ({ athletes, onAthleteClick }) => (
-  <ul className="rankings">
+const AthleteList = ({ athletes }) => (
+  <div className="col-md-3">
+  <ul className="wsl-rankings">
     {athletes.map((athlete, idx) =>
       <Athlete
         key={idx}
         athlete={athlete}
-        onClick={() => onAthleteClick(idx)}
       />
     )}
   </ul>
+  </div>
 );
 
 export { Athlete, AthleteList };

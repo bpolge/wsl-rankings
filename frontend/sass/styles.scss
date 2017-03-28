@@ -2,7 +2,7 @@
 	position: absolute;
 }
 
-.rankings {
+.wsl-rankings {
 	list-style-type: none;
 
 	.athlete-img {
@@ -19,8 +19,8 @@
 
 	.athlete-tile {
 		border: 1px solid #607d8b;
-		margin: 10px;
-		width: 250px;
+		margin: 0 10px 10px;
+		width: 100%;
 		height: 53px;
 		position: relative;
 	
@@ -30,4 +30,9 @@
 			display: block;
 		}
 	}
+}
+
+.wsl-event {
+	border: 1px solid red;
+
 }

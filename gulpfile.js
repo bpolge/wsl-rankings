@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
-const sass = require('gulp-sass');
 const util = require('gulp-util');
 
 const dirs = {
@@ -20,12 +19,6 @@ const config = {
   output: dirs.build,
   www: `${dirs.build}/public`,
 };
-
-gulp.task('css', () => {
-  gulp.src(files.css)
-  .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest(`${config.www}/css`));
-});
 
 gulp.task('html', () => {
   gulp.src(files.htm)
@@ -58,7 +51,7 @@ gulp.task('watch', () => {
   gulp.watch(files.js, ['babel']);
 });
 
-gulp.task('www', ['html', 'css', 'libs']);
+gulp.task('www', ['html', 'libs']);
 gulp.task('server', ['babel']);
 gulp.task('build', ['www', 'server']);
 gulp.task('default', ['build']);
