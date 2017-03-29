@@ -5,9 +5,8 @@ var BUILD_DIR = path.resolve(__dirname, 'dist/public/js');
 var APP_DIR = path.resolve(__dirname, 'frontend/js');
 var CSS_DIR = path.resolve(__dirname, 'frontend/sass');
 
-console.log(`CSS_DIR path: ${CSS_DIR}`);
-
 var config = {
+  devtool: 'cheap-eval-source-map',
   entry: APP_DIR + '/client.jsx',
   output: {
     path: BUILD_DIR,

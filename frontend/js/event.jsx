@@ -2,15 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addPoints } from './actions';
 
-let Event = ({ dispatch }) => (
+let Event = ({ dispatch, selected }) => (
   <div className="wsl-event col-md-9">
     <button
       id="add-points"
       onClick={e => {
         e.preventDefault();
-        dispatch(addPoints(1));
+        dispatch(addPoints(1000, selected));
       }} />
   </div>
 );
 
-export default connect()(Event);
+const stateMap = state => ({
+  selected: state.selectedAthlete,
+});
+
+export default connect(stateMap)(Event);

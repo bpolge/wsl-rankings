@@ -1,10 +1,14 @@
-const addPoints = points => ({
-  type: 'ADD_POINTS',
-  points,
-});
-
-const addAthlete = athlete => Object.assign(athlete, {
+export const addAthlete = athlete => Object.assign(athlete, {
   type: 'ADD_ATHLETE',
 });
 
-export { addPoints, addAthlete };
+export const toggleSelected = athleteId => ({
+  type: 'TOGGLE_SELECTED',
+  athleteId,
+});
+
+export const addPoints = (points, id) => ({
+  type: 'ADD_POINTS',
+  points,
+  id,
+});

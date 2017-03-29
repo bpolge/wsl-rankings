@@ -8,10 +8,13 @@ const athlete = (state, action) => {
         rank: action.rank,
         imgSrc: action.imgSrc,
       };
-    case 'ADD_POINTS':
+    case 'ADD_POINTS': {
       let points = state.points || 0;
-      points += 1000;
+      points += action.points;
       return Object.assign({}, state, { points });
+    }
+    case 'TOGGLE_SELECTED':
+      return { ...state, selected: !state.selected };
     default:
       return state;
   }
@@ -25,12 +28,28 @@ const athletes = (state = [], action) => {
         athlete(undefined, action),
       ];
     case 'ADD_POINTS':
-      return state.map((item, idx) => {
-        if (idx === action.points) {
+      return state.map(item => {
+        if (action.id === item.id) {
           return athlete(item, action);
         }
-        return Object.assign({}, item);
+        return item;
       });
+    case 'TOGGLE_SELECTED':
+      return state.map(item => {
+        if (action.id === item.id) {
+          athlete(item, action);
+        }
+        return ({ ...item, selected: false });
+      });
+    default:
+      return state;
+  }
+};
+
+const changeSelected = (state = 0, action) => {
+  switch (action.type) {
+    case 'TOGGLE_SELECTED':
+      return action.athleteId;
     default:
       return state;
   }
@@ -38,4 +57,5 @@ const athletes = (state = [], action) => {
 
 export default (state = {}, action) => ({
   athletes: athletes(state.athletes, action),
+  selectedAthlete: changeSelected(state.selectedAthlete, action),
 });

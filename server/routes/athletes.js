@@ -7,7 +7,13 @@ function AthleteRoute(redisClient) {
   router.route('/')
     .get((req, res) => {
       redisClient.smembersAsync('wsl:test:athlete')
-        .then(result => result.map(key => redisClient.hgetallAsync(`wsl:test:athlete:${key}`)))
+        .then(result => result.map(key => {
+          return redisClient.hgetallAsync(`wsl:test:athlete:${key}`)
+            .then(obj => ({ ...obj, id: key }))
+            .tap(newO => {
+              console.log(`resulting obj: ${newO}`);
+            });
+        }))
         .all()
         .then(athletes => {
           res.json(athletes);
