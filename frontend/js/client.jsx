@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import { addAthlete } from './actions';
-import AthleteList from './container';
+import AthleteList from './container.jsx';
 import CtEvent from './event.jsx';
 
 require('../sass/styles.scss');
