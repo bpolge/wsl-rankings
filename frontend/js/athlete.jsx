@@ -1,9 +1,27 @@
 import React, { PropTypes } from 'react';
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from './constants';
 
-const Athlete = props => {
+const athleteSource = {
+  beginDrag(props) {
+    console.log('begin drag:', props);
+    return {
+      id: props.athlete.id,
+    };
+  },
+};
+
+function collect(connect) {
+  return {
+    connectDragSource: connect.dragSource(),
+  };
+}
+
+let Athlete = props => {
   const { name, rank, imgSrc, points } = props.athlete;
+  const { connectDragSource } = props;
   const url = `/athletes/${name}`;
-  return (
+  return connectDragSource(
     <div className="athlete-tile">
       <a className="headshot" href={url}>
         <img className="athlete-img" src={imgSrc} alt={name} /></a>
@@ -18,6 +36,8 @@ const Athlete = props => {
 Athlete.propTypes = {
   athlete: PropTypes.object,
 };
+
+Athlete = DragSource(ItemTypes.ATHLETE_TILE, athleteSource, collect)(Athlete);
 
 const AthleteList = ({ children }) => (
   <div className="col-md-3">

@@ -18,13 +18,13 @@
 	}
 
 	.athlete-list-item {
-		border: 1px solid #607d8b;
 		margin: 0 10px 10px;
 		width: 100%;
 		height: 53px;
 		position: relative;
 
 		.athlete-tile {
+			border: 1px solid #607d8b;
 			.text-wrap {
 				padding-left: 75px;
 				height: 50px;
@@ -33,7 +33,9 @@
 		}
 
 		&.selected {
-			border: 1px solid red;
+			.athlete-tile {
+				border: 1px solid red;
+			}
 		}
 	}
 
