@@ -10,8 +10,6 @@ const dirs = {
 
 const files = {
   js: './server/**/*.js',
-  scripts: './frontend/**/*.js',
-  css: './frontend/sass/**/*.scss',
   htm: './frontend/**/+(*.html|*.htm)',
 };
 
@@ -30,11 +28,6 @@ gulp.task('libs', () => {
   .pipe(gulp.dest(`${config.www}/lib`));
 });
 
-gulp.task('scripts', () => {
-  gulp.src(files.scripts)
-  .pipe(gulp.dest(config.www));
-});
-
 gulp.task('babel', () => {
   gulp.src(files.js)
   .pipe(babel().on('error', util.log))
@@ -44,11 +37,6 @@ gulp.task('babel', () => {
 gulp.task('clean', () => {
   gulp.src(config.output, { read: false })
   .pipe(clean());
-});
-
-gulp.task('watch', () => {
-  gulp.watch(files.css, ['css']);
-  gulp.watch(files.js, ['babel']);
 });
 
 gulp.task('www', ['html', 'libs']);
